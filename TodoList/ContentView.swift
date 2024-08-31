@@ -11,9 +11,11 @@
 // i the preview add a .modelContainer for the model.self
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     
+    @Query private var items: [ToDoItem]
     @State private var showCreate = false
     
     var body: some View {
