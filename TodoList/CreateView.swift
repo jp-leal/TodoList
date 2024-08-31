@@ -5,11 +5,14 @@
 //  Created by Joao Leal on 8/31/24.
 //
 
+
+
 import SwiftUI
 
 struct CreateView: View {
     
     @Environment(\.dismiss) var dismiss
+    @State private var item = ToDoItem()
     
     var body: some View {
         List{
@@ -27,4 +30,5 @@ struct CreateView: View {
 
 #Preview {
     CreateView()
+        .modelContainer(for: ToDoItem.self)
 }
