@@ -13,13 +13,13 @@ import SwiftData
 
 @Model
 final class ToDoItem{
-    var title: String
+    var name: String
     var timeStamp: Date
     var isCritical: Bool
     var isCompleted: Bool
     
     init(title: String = "", timeStamp: Date = .now, isCritical: Bool = false, isCompleted: Bool = false) {
-        self.title = title
+        self.name = title
         self.timeStamp = timeStamp
         self.isCritical = isCritical
         self.isCompleted = isCompleted

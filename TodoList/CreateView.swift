@@ -19,7 +19,7 @@ struct CreateView: View {
     
     var body: some View {
         List{
-            TextField("Title", text: $item.title)
+            TextField("Title", text: $item.name)
             DatePicker("Choose a data", selection: $item.timeStamp)
             Toggle("Important?", isOn: $item.isCritical)
             Button("Create") {
