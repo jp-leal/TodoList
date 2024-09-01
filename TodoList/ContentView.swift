@@ -18,6 +18,7 @@ struct ContentView: View {
     @Environment(\.modelContext) var context
     
     @Query private var items: [ToDoItem]
+    @State private var toDoToEdit: ToDoItem?
     @State private var showCreate = false
     
     var body: some View {
@@ -41,7 +42,11 @@ struct ContentView: View {
                         }
                         Spacer()
                         
-                        Button{}
+                        Button{
+                            withAnimation {
+                                item.isCompleted.toggle()
+                            }
+                        }
                         label:{
                             Image(systemName: "checkmark")
                                 .symbolVariant(.circle.fill)
@@ -58,10 +63,17 @@ struct ContentView: View {
                         } label: {
                             Label("Delete", systemImage: "trash")
                                 .symbolVariant(.fill)
-                        
+                            
                         }
+                        Button{
+                            toDoToEdit = item
+                        } label: {
+                            Label("Edit", systemImage: "pencil")
+                        }
+                        .tint(.orange)
                     }
-                }}
+                }
+            }.navigationTitle("To Do List")
                 .toolbar{
                     ToolbarItem{
                         Button(action: {
@@ -74,11 +86,15 @@ struct ContentView: View {
                     NavigationStack{
                         CreateView()
                             .presentationDetents([.medium])
-                    }
+                    }}
+                    .sheet(item: $toDoToEdit) {
+                        toDoToEdit = nil
+                    } content: { item in
+                        UpdateToDoView(item: item)}
                 }
         }
     }
-}
+
 
 #Preview {
     ContentView()
